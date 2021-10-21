@@ -127,7 +127,7 @@ function reduce(asyncArray, fn, initialValue, cb) {
             result = sm
         )
     })
-    return result
+    cb(result)
         // добро пожаловать в Callback Hell
         // твой побег начинается прямо сейчас...
 }

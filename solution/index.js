@@ -34,6 +34,6 @@ module.exports = function(Homework) {
                 result = sm
             )
         })
-        return result
+        cb(result)
     }
 }
