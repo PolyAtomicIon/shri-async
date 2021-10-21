@@ -1,6 +1,6 @@
 // solution/index.js
 module.exports = function(Homework) {
-    return (array, fn, initialValue, cb) => {
+    return async(array, fn, initialValue, cb) => {
         let result = initialValue;
         array.length((length) => {
             new Promise((resolve) => {
@@ -11,7 +11,6 @@ module.exports = function(Homework) {
                     Homework.less(i, length, (isToContinue) => {
                         if (!isToContinue) {
                             stop = true
-                            console.log(result)
                             resolve(result)
                         } else {
                             array.get(i, (nextToAdd) => {
@@ -29,7 +28,7 @@ module.exports = function(Homework) {
                 }
                 sFn()
             }).then((sm) =>
-                cb(result)
+                cb(sm)
             )
         })
     }
