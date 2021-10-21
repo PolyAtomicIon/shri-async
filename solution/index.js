@@ -18,9 +18,10 @@ module.exports = function(Homework) {
                         } else {
                             array.get(i, (nextToAdd) => {
                                 fn(result, nextToAdd, i, null, (sum) => {
-                                    i++;
-                                    result = sum
-                                    sFn()
+                                    add(i, 1, () => {
+                                        result = sum
+                                        sFn()
+                                    })
                                 })
                             })
 

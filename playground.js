@@ -111,9 +111,10 @@ function reduce(asyncArray, fn, initialValue, cb) {
                     } else {
                         asyncArray.get(i, (nextToAdd) => {
                             fn(result, nextToAdd, i, null, (sum) => {
-                                i++;
-                                result = sum
-                                sFn()
+                                add(i, 1, () => {
+                                    result = sum
+                                    sFn()
+                                })
                             })
                         })
 
