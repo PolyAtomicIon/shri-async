@@ -92,7 +92,7 @@ const asyncArray = new Homework.AsyncArray([-8, 2, 3, 8]);
 const reducerSum = (acc, curr, i, src, cb) => Homework.add(acc, curr, cb);
 const myReduce = require("./solution/index")(Homework)
 
-myReduce(asyncArray, reducerSum, 0, (res) => {
+myReduce(asyncArray, reducerSum, 5, (res) => {
     console.log(res); // 10
 });
 

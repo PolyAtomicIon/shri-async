@@ -23,7 +23,7 @@ module.exports = function(Homework) {
             } else {
                 let nextToAdd = await asyncFn(array.get)(i)
                 result = await asyncFn(fn)(result, nextToAdd, null, null)
-                i = await asyncFn(Homework.add)(i, 2)
+                i = await asyncFn(Homework.add)(i, 1)
                 await sFn()
             }
         }
