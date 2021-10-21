@@ -88,44 +88,49 @@ const { AsyncArray, add, subtract, multiply, divide, less, equal, lessOrEqual } 
 
 // lessOrEqual(12, 19, (result) => console.log('результат операции МЕНЬШЕ ИЛИ РАВНО', result));
 
-const asyncArray = new Homework.AsyncArray([1, 2, 3, 8]);
+const asyncArray = new Homework.AsyncArray([-8, 2, 3, 8]);
 const reducerSum = (acc, curr, i, src, cb) => Homework.add(acc, curr, cb);
+const myReduce = require("./solution/index")(Homework)
 
-reduce(asyncArray, reducerSum, 4, (res) => {
+myReduce(asyncArray, reducerSum, 0, (res) => {
     console.log(res); // 10
 });
 
-function reduce(asyncArray, fn, initialValue, cb) {
-    let result = initialValue;
-    asyncArray.length((length) => {
-            new Promise((resolve) => {
-                let i = 0;
-                let stop = false
 
-                let sFn = () => {
-                    less(i, length, (isToContinue) => {
-                        if (!isToContinue) {
-                            stop = true
-                            resolve(result)
-                        } else {
-                            asyncArray.get(i, (nextToAdd) => {
-                                fn(result, nextToAdd, i, null, (sum) => {
-                                    add(i, 1, (it) => {
-                                        i = it
-                                        result = sum
-                                        sFn()
-                                    })
-                                })
-                            })
 
-                        }
-                    })
-                }
-                sFn()
-            }).then((sm) =>
-                cb(sm)
-            )
-        })
-        // добро пожаловать в Callback Hell
-        // твой побег начинается прямо сейчас...
-}
+
+
+// function reduce(asyncArray, fn, initialValue, cb) {
+//     let result = initialValue;
+//     asyncArray.length((length) => {
+//             new Promise((resolve) => {
+//                 let i = 0;
+//                 let stop = false
+
+//                 let sFn = () => {
+//                     less(i, length, (isToContinue) => {
+//                         if (!isToContinue) {
+//                             stop = true
+//                             resolve(result)
+//                         } else {
+//                             asyncArray.get(i, (nextToAdd) => {
+//                                 fn(result, nextToAdd, i, null, (sum) => {
+//                                     add(i, 1, (it) => {
+//                                         i = it
+//                                         result = sum
+//                                         sFn()
+//                                     })
+//                                 })
+//                             })
+
+//                         }
+//                     })
+//                 }
+//                 sFn()
+//             }).then((sm) =>
+//                 cb(sm)
+//             )
+//         })
+//         // добро пожаловать в Callback Hell
+//         // твой побег начинается прямо сейчас...
+// }
