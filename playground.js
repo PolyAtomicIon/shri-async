@@ -97,9 +97,6 @@ myReduce(asyncArray, reducerSum, 0, (res) => {
 });
 
 
-
-
-
 // function reduce(asyncArray, fn, initialValue, cb) {
 //     let result = initialValue;
 //     asyncArray.length((length) => {
