@@ -92,7 +92,7 @@ const asyncArray = new Homework.AsyncArray([1, 2, 3, 4]);
 const reducerSum = (acc, curr, i, src, cb) => Homework.add(acc, curr, cb);
 
 reduce(asyncArray, reducerSum, 0, (res) => {
-    console.log("YoOY", res); // 10
+    console.log(res); // 10
 });
 
 function reduce(asyncArray, fn, initialValue, cb) {
