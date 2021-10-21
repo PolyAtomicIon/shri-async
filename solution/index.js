@@ -10,7 +10,7 @@ module.exports = function(Homework) {
                 let stop = false
 
                 let sFn = () => {
-                    less(i, length, (isToContinue) => {
+                    Homework.less(i, length, (isToContinue) => {
                         if (!isToContinue) {
                             stop = true
                             console.log(result)
@@ -31,9 +31,8 @@ module.exports = function(Homework) {
                 }
                 sFn()
             }).then((sm) =>
-                result = sm
+                cb(result)
             )
         })
-        cb(result)
     }
 }

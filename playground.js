@@ -88,46 +88,44 @@ const { AsyncArray, add, subtract, multiply, divide, less, equal, lessOrEqual } 
 
 // lessOrEqual(12, 19, (result) => console.log('результат операции МЕНЬШЕ ИЛИ РАВНО', result));
 
-const asyncArray = new Homework.AsyncArray([1, 2, 3, 4]);
+const asyncArray = new Homework.AsyncArray([1, 2, 3, 8]);
 const reducerSum = (acc, curr, i, src, cb) => Homework.add(acc, curr, cb);
 
-reduce(asyncArray, reducerSum, 0, (res) => {
+reduce(asyncArray, reducerSum, 4, (res) => {
     console.log(res); // 10
 });
 
 function reduce(asyncArray, fn, initialValue, cb) {
     let result = initialValue;
     asyncArray.length((length) => {
-        new Promise((resolve) => {
-            let i = 0;
-            let stop = false
+            new Promise((resolve) => {
+                let i = 0;
+                let stop = false
 
-            let sFn = () => {
-                less(i, length, (isToContinue) => {
-                    if (!isToContinue) {
-                        stop = true
-                        console.log(result)
-                        resolve(result)
-                    } else {
-                        asyncArray.get(i, (nextToAdd) => {
-                            fn(result, nextToAdd, i, null, (sum) => {
-                                add(i, 1, (it) => {
-                                    i = it
-                                    result = sum
-                                    sFn()
+                let sFn = () => {
+                    less(i, length, (isToContinue) => {
+                        if (!isToContinue) {
+                            stop = true
+                            resolve(result)
+                        } else {
+                            asyncArray.get(i, (nextToAdd) => {
+                                fn(result, nextToAdd, i, null, (sum) => {
+                                    add(i, 1, (it) => {
+                                        i = it
+                                        result = sum
+                                        sFn()
+                                    })
                                 })
                             })
-                        })
 
-                    }
-                })
-            }
-            sFn()
-        }).then((sm) =>
-            result = sm
-        )
-    })
-    cb(result)
+                        }
+                    })
+                }
+                sFn()
+            }).then((sm) =>
+                cb(sm)
+            )
+        })
         // добро пожаловать в Callback Hell
         // твой побег начинается прямо сейчас...
 }
